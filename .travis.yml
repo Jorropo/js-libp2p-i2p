@@ -33,4 +33,4 @@ jobs:
         - npm run lint
 
 notifications:
-  email: false
+  email: true

@@ -1,23 +1,25 @@
-# js-libp2p-tcp
+# js-libp2p-i2p
 
-[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://protocol.ai)
 [![](https://img.shields.io/badge/project-libp2p-yellow.svg?style=flat-square)](http://libp2p.io/)
 [![](https://img.shields.io/badge/freenode-%23libp2p-yellow.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23libp2p)
-[![Discourse posts](https://img.shields.io/discourse/https/discuss.libp2p.io/posts.svg)](https://discuss.libp2p.io)
-[![](https://img.shields.io/codecov/c/github/libp2p/js-libp2p-tcp.svg?style=flat-square)](https://codecov.io/gh/libp2p/js-libp2p-tcp)
-[![](https://img.shields.io/travis/libp2p/js-libp2p-tcp.svg?style=flat-square)](https://travis-ci.com/libp2p/js-libp2p-tcp)
-[![Dependency Status](https://david-dm.org/libp2p/js-libp2p-tcp.svg?style=flat-square)](https://david-dm.org/libp2p/js-libp2p-tcp)
+[![](https://img.shields.io/codecov/c/github/Jorropo/js-libp2p-i2p.svg?style=flat-square)](https://codecov.io/gh/Jorropo/js-libp2p-i2p)
+[![](https://img.shields.io/travis/Jorropo/js-libp2p-i2p.svg?style=flat-square)](https://travis-ci.com/Jorropo/js-libp2p-i2p)
+[![Dependency Status](https://david-dm.org/Jorropo/js-libp2p-i2p.svg?style=flat-square)](https://david-dm.org/Jorropo/js-libp2p-i2p)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 
 [![](https://raw.githubusercontent.com/libp2p/interface-transport/master/img/badge.png)](https://github.com/libp2p/interface-transport)
 [![](https://raw.githubusercontent.com/libp2p/interface-connection/master/img/badge.png)](https://github.com/libp2p/interface-connection)
 
 
-> JavaScript implementation of the TCP module for libp2p. It exposes the [interface-transport](https://github.com/libp2p/interface-connection) for dial/listen. `libp2p-tcp` is a very thin shim that adds support for dialing to a `multiaddr`. This small shim will enable libp2p to use other different transports.
+> JavaScript implementation of the I2P module for libp2p. It exposes the [interface-transport](https://github.com/libp2p/interface-connection) for dial/listen. `libp2p-tcp` is a very thin shim that adds support for dialing to a `multiaddr`. This small shim will enable libp2p to use other different transports.
+
+This module is in WIP and not even working, code is just from js-libp2p-tcp and need to be changed.
+
+It was templated on [js-libp2p-tcp](https://github.com/libp2p/js-libp2p-tcp).
 
 ## Lead Maintainer
 
-[Jacob Heun](https://github.com/jacobheun)
+[Jorropo](https://github.com/Jorropo)
 
 ## Table of Contents
 
@@ -38,49 +40,7 @@
 
 ## Usage
 
-```js
-const TCP = require('libp2p-tcp')
-const multiaddr = require('multiaddr')
-const pull = require('pull-stream')
-
-const mh = multiaddr('/ip4/127.0.0.1/tcp/9090')
-
-const tcp = new TCP()
-
-const listener = tcp.createListener((socket) => {
-  console.log('new connection opened')
-  pull(
-    pull.values(['hello']),
-    socket
-  )
-})
-
-listener.listen(mh, () => {
-  console.log('listening')
-
-  pull(
-    tcp.dial(mh),
-    pull.collect((err, values) => {
-      if (!err) {
-        console.log(`Value: ${values.toString()}`)
-      } else {
-        console.log(`Error: ${err}`)
-      }
-
-      // Close connection after reading
-      listener.close()
-    }),
-  )
-})
-```
-
-Outputs:
-
-```sh
-listening
-new connection opened
-Value: hello
-```
+WIP
 
 ## API
 
